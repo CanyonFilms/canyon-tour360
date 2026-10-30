@@ -12,215 +12,550 @@
 <meta name="theme-color" content="#07315D">
 <link rel="icon" type="image/png" href="assets/logo-360.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-html{scroll-behavior:smooth}
-body{margin:0;background:#020D17}
-a{color:#2AD3FF}a:hover{color:#80E5FF}
-section[id]{scroll-margin-top:24px}
-.btn{display:inline-block;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease,border-color .2s ease}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,163,215,.35);filter:brightness(1.08)}
-.btn:active{transform:translateY(0)}
-.navlink{transition:color .2s ease}
-.navlink:hover{color:#FFFFFF !important}
-.card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-.card:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.45);border-color:#2AD3FF !important}
-.hero-art img{transition:transform .6s ease}
-.hero-art img:hover{transform:rotate(-6deg) scale(1.03)}
-@media (max-width: 720px){
-.navlink{display:none}
-header img{height:36px !important}
-header .btn{padding:10px 16px !important;font-size:13px !important}
-.hero{padding-top:16px !important;gap:20px !important}
-.hero-art{order:-1;justify-content:flex-start !important;flex-basis:auto !important}
-.hero-art img{width:120px !important}
-.hero-title{font-size:32px !important;line-height:1.15 !important}
-.hero-sub{font-size:16px !important}
-.h2{font-size:28px !important;margin-bottom:24px !important}
-.demo-box{min-height:0 !important;padding:36px 20px !important}
-.demo-title{font-size:22px !important}
-.price{font-size:32px !important}
-.cta-title{font-size:26px !important}
+:root{
+  --navy:#07315D; --deep:#041D38; --ink:#020D17; --panel:#01070D;
+  --line:#1E3A5A; --blue:#1A8FD0; --cyan:#2AD3FF; --cyan-soft:#69B9F0; --teal:#1AB499;
+  --text:#FFFFFF; --muted:#C9D7E6; --faint:#8AA4C0;
+  --grad:linear-gradient(90deg,#0058B3,#00A3D7);
+  --grad-teal:linear-gradient(90deg,#007DCE,#00D7B1);
+  --radius:20px;
 }
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.btn,.card,.navlink,.hero-art img{transition:none !important}.btn:hover,.card:hover,.hero-art img:hover{transform:none !important}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:var(--cyan)}
+.page{background:linear-gradient(180deg,var(--navy) 0%,var(--deep) 22%,var(--ink) 60%,var(--deep) 100%);overflow:hidden}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{position:relative}
+section[id]{scroll-margin-top:88px}
+.sec{padding-top:88px;padding-bottom:40px}
+.label{margin:0 0 14px;font-size:18px;font-weight:600;letter-spacing:3px;color:var(--cyan-soft);text-transform:uppercase}
+.h2{margin:0 0 40px;font-size:42px;font-weight:500;line-height:1.15}
+.lead{margin:-20px 0 40px;font-size:17px;line-height:1.6;color:var(--muted);max-width:640px}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;transition:background .3s ease,box-shadow .3s ease,backdrop-filter .3s ease}
+.site-header.scrolled{background:rgba(4,29,56,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(42,211,255,.12)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px}
+.site-header img{height:44px;width:auto;display:block}
+.nav{display:flex;align-items:center;gap:28px;font-size:14px}
+.navlink{color:var(--muted);text-decoration:none;position:relative;padding:6px 0;transition:color .2s ease}
+.navlink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.navlink:hover{color:#fff}.navlink:hover::after{transform:scaleX(1)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;color:#fff;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease,border-color .2s ease,background .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,163,215,.35);filter:brightness(1.08);color:#fff}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--grad)}
+.btn-teal{background:var(--grad-teal)}
+.btn-ghost{border-color:#3A5A7C;background:rgba(255,255,255,.02);font-weight:500}
+.btn-ghost:hover{border-color:var(--cyan)}
+.btn-outline{border-color:var(--cyan)}
+.btn-white{background:#fff;color:var(--deep);font-weight:700}
+.btn-white:hover{color:var(--deep)}
+.btn-sm{padding:11px 20px;font-size:14px;font-weight:500}
+.btn svg{flex-shrink:0}
+
+/* Hero */
+.hero{display:flex;flex-wrap:wrap;align-items:center;gap:48px;padding-top:56px;padding-bottom:40px}
+.hero-copy{flex:1 1 460px;min-width:0}
+.hero-title{margin:0;font-size:54px;line-height:1.08;font-weight:500;letter-spacing:-.5px}
+.hero-title em{font-style:normal;background:linear-gradient(90deg,#2AD3FF,#1AB499);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin:24px 0 0;font-size:18px;line-height:1.6;color:var(--muted);max-width:520px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.hero-art{flex:1 1 380px;min-width:0;display:flex;justify-content:center;position:relative}
+.hero-art::before{content:"";position:absolute;width:420px;height:420px;max-width:100%;border-radius:50%;background:radial-gradient(circle,rgba(42,211,255,.22) 0%,rgba(42,211,255,0) 68%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-art img{position:relative;width:380px;height:auto;border-radius:50%;animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:32px;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.trust li{display:flex;align-items:center;gap:8px}
+.trust svg{color:var(--teal)}
+
+/* Demo */
+.demo{margin-top:24px;border-radius:24px;border:1px solid var(--blue);background:radial-gradient(ellipse at top,#0B3A66 0%,var(--panel) 65%);padding:48px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.demo h2{margin:0;font-size:34px;font-weight:500;max-width:660px;line-height:1.25}
+.demo p.hint{margin:0;font-size:15px;color:var(--muted)}
+.tour-frame{width:100%;max-width:1040px;aspect-ratio:16/9;min-height:320px;border-radius:16px;overflow:hidden;border:1px solid var(--blue);background:var(--panel);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.tour-frame iframe{width:100%;height:100%;border:0;display:block}
+
+/* Cards */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{border-radius:var(--radius);background:var(--panel);border:1px solid var(--line);padding:32px;display:flex;flex-direction:column;gap:14px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.45);border-color:var(--cyan)}
+.card .num{font-size:40px;font-weight:600;color:var(--cyan);line-height:1}
+.card h3{margin:0;font-size:20px;font-weight:600}
+.card p{margin:0;font-size:15px;line-height:1.6;color:var(--muted)}
+.b1{border-color:#1A8FD0}.b2{border-color:#1A9FC0}.b3{border-color:#1AB499}
+.footnote{margin:16px 0 0;font-size:12px;color:var(--faint)}
+
+/* Interactive section */
+.fit{border-radius:28px;border:1px solid rgba(42,211,255,.25);background:linear-gradient(160deg,rgba(11,58,102,.55) 0%,rgba(1,7,13,.9) 60%);padding:48px}
+.step{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:32px;align-items:start}
+.step + .step{margin-top:48px;padding-top:48px;border-top:1px solid var(--line)}
+.step-head{display:flex;align-items:center;gap:14px;margin:0 0 8px}
+.step-n{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;background:var(--grad);flex-shrink:0}
+.step h3{margin:0;font-size:22px;font-weight:600;line-height:1.3}
+.step .help{margin:0 0 22px 50px;font-size:14px;color:var(--faint)}
+.chips{display:flex;flex-direction:column;gap:10px}
+.chips.wrap-row{flex-direction:row;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px 18px;border-radius:14px;border:1px solid #2A4A6C;background:rgba(255,255,255,.03);color:#fff;font-family:inherit;font-size:15px;line-height:1.4;cursor:pointer;min-height:52px;transition:border-color .2s ease,background .2s ease,transform .15s ease}
+.chips.wrap-row .chip{width:auto;border-radius:999px;padding:12px 18px}
+.chip:hover{border-color:var(--cyan);background:rgba(42,211,255,.06)}
+.chip:active{transform:scale(.98)}
+.chip:focus-visible,.btn:focus-visible,.navlink:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.chip .box{width:22px;height:22px;border-radius:7px;border:1.5px solid #4A6A8C;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s ease,border-color .2s ease}
+.chip .box svg{opacity:0;transform:scale(.5);transition:opacity .2s ease,transform .2s ease}
+.chip .ico{color:var(--cyan);flex-shrink:0;display:inline-flex}
+.chip[aria-pressed="true"]{border-color:var(--cyan);background:linear-gradient(90deg,rgba(0,88,179,.35),rgba(0,163,215,.18))}
+.chip[aria-pressed="true"] .box{background:var(--cyan);border-color:var(--cyan)}
+.chip[aria-pressed="true"] .box svg{opacity:1;transform:scale(1)}
+.answers{border-radius:var(--radius);background:rgba(1,7,13,.75);border:1px dashed #2A4A6C;padding:26px;min-height:100%;display:flex;flex-direction:column;gap:14px}
+.answers.has{border-style:solid;border-color:rgba(26,180,153,.55)}
+.answers .ttl{margin:0;font-size:13px;font-weight:600;letter-spacing:2px;color:var(--teal);text-transform:uppercase}
+.answers .empty{margin:0;font-size:15px;color:var(--faint);line-height:1.6}
+.ans{display:flex;gap:12px;align-items:flex-start;margin:0;font-size:15px;line-height:1.55;color:var(--muted);animation:pop .35s ease both}
+.ans svg{color:var(--teal);flex-shrink:0;margin-top:2px}
+.ans b{color:#fff;font-weight:600}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.meter{border-radius:var(--radius);background:rgba(1,7,13,.75);border:1px solid #2A4A6C;padding:26px;display:flex;flex-direction:column;gap:16px}
+.meter .big{font-size:56px;font-weight:600;line-height:1;background:linear-gradient(90deg,#2AD3FF,#1AB499);-webkit-background-clip:text;background-clip:text;color:transparent}
+.meter p{margin:0;font-size:15px;line-height:1.6;color:var(--muted)}
+.bar{height:8px;border-radius:999px;background:#0E2A47;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--grad-teal);transition:width .45s ease}
+.scene{display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:center;border-radius:var(--radius);background:linear-gradient(120deg,#0B3A66,#041D38);border:1px solid rgba(42,211,255,.25);padding:32px}
+.clock{font-size:64px;font-weight:300;line-height:1;letter-spacing:-1px;color:#fff}
+.clock small{display:block;margin-top:8px;font-size:12px;letter-spacing:3px;color:var(--cyan-soft);font-weight:600}
+.scene p{margin:0;font-size:18px;line-height:1.65;color:var(--muted)}
+.scene p b{color:#fff;font-weight:600}
+.bridge{margin-top:48px;padding-top:40px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.bridge h3{margin:0;font-size:26px;font-weight:500;line-height:1.3;max-width:560px}
+.bridge .free{margin:8px 0 0;font-size:14px;color:var(--faint)}
+.bridge .ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Pricing */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:stretch}
+.plan{position:relative;padding:32px;border-radius:var(--radius);background:var(--deep);border:1px solid var(--line);display:flex;flex-direction:column;gap:18px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.plan:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.45);border-color:var(--cyan)}
+.plan.featured{background:linear-gradient(180deg,#0B3A66 0%,var(--deep) 100%);border:2px solid var(--cyan);box-shadow:0 0 0 6px rgba(42,211,255,.06)}
+.plan .tag{position:absolute;top:-14px;right:24px;padding:6px 14px;border-radius:999px;background:#00A3D7;font-size:11px;font-weight:700;letter-spacing:1.5px}
+.plan .kicker{margin:0;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--cyan)}
+.plan h3{margin:0;font-size:28px;font-weight:600}
+.plan .desc{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.plan .sep{height:1px;background:var(--line)}
+.feat{display:flex;align-items:center;gap:12px;margin:0;font-size:15px;font-weight:500}
+.feat img{width:40px;height:auto;flex-shrink:0}
+.plan .grow{flex-grow:1}
+.price{margin:0;font-size:40px;font-weight:600;line-height:1}
+.price span{font-size:18px;font-weight:500;color:var(--muted);margin-right:4px}
+.prata{color:#D1D1D1}.ouro{color:#FFD875}.diamante{color:#80E5FF}
+
+/* Included / extras */
+.box-list{border-radius:var(--radius);background:var(--panel);padding:32px;display:flex;flex-direction:column;gap:20px}
+.box-list h3{margin:0;font-size:22px;font-weight:600}
+.inc{display:flex;align-items:center;gap:16px}
+.inc .ring{width:44px;height:44px;flex-shrink:0;border-radius:50%;border:1.5px solid var(--cyan);display:flex;align-items:center;justify-content:center;color:var(--cyan)}
+.inc p{margin:0}
+.inc .t{font-size:15px;font-weight:600}
+.inc .d{margin-top:4px;font-size:14px;color:var(--muted)}
+.row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line);font-size:15px}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.row b{color:var(--cyan);font-weight:600}
+
+/* Conditions */
+.conds{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.cond{padding:24px;border-radius:16px;border:1px solid var(--line);background:rgba(1,7,13,.4);display:flex;flex-direction:column;gap:8px;transition:border-color .2s ease}
+.cond:hover{border-color:#2A5A7C}
+.cond p{margin:0}
+.cond .t{font-size:16px;font-weight:600}
+.cond .d{font-size:14px;line-height:1.6;color:var(--muted)}
+
+/* Final CTA + footer */
+.cta{border-radius:28px;padding:64px 32px;text-align:center;background:linear-gradient(135deg,#0058B3 0%,#007DCE 50%,#00B39A 100%);display:flex;flex-direction:column;align-items:center;gap:18px;box-shadow:0 30px 80px rgba(0,125,206,.25)}
+.cta h2{margin:0;font-size:40px;font-weight:600;max-width:720px;line-height:1.2}
+.cta p{margin:0;font-size:17px;color:#E6F4FF}
+footer{border-top:1px solid var(--line);margin-top:24px}
+footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:13px;color:var(--faint)}
+
+/* Scroll reveal (only when JS runs) */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+/* Mobile */
+@media (max-width: 860px){
+  .step{grid-template-columns:1fr;gap:20px}
+  .fit{padding:28px 20px}
+  .scene{grid-template-columns:1fr;gap:16px;padding:26px}
+  .clock{font-size:48px}
+}
+@media (max-width: 720px){
+  .navlink{display:none}
+  .site-header img{height:34px}
+  .site-header .wrap{padding-top:14px;padding-bottom:14px}
+  .hero{padding-top:8px;gap:20px}
+  .hero-art{order:-1;justify-content:flex-start;flex-basis:auto}
+  .hero-art::before{width:180px;height:180px;left:60px}
+  .hero-art img{width:120px;animation:none}
+  .hero-title{font-size:32px;line-height:1.15}
+  .hero-sub{font-size:16px}
+  .hero-ctas .btn{flex:1 1 auto}
+  .sec{padding-top:64px;padding-bottom:24px}
+  .label{font-size:15px}
+  .h2{font-size:28px;margin-bottom:24px}
+  .lead{margin:-8px 0 28px;font-size:15px}
+  .demo{padding:32px 16px}
+  .demo h2{font-size:22px}
+  .tour-frame{aspect-ratio:4/5;min-height:0}
+  .step h3{font-size:19px}
+  .step .help{margin-left:0}
+  .scene p{font-size:16px}
+  .bridge h3{font-size:21px}
+  .bridge .ctas,.bridge .ctas .btn{width:100%}
+  .price{font-size:32px}
+  .cta{padding:44px 20px}
+  .cta h2{font-size:26px}
+  .card,.plan,.box-list{padding:26px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
-<div style="min-height: 100vh; background: linear-gradient(180deg, #07315D 0%, #041D38 28%, #020D17 100%); color: #FFFFFF; font-family: 'Poppins', system-ui, sans-serif">
+<div class="page">
 
-<header style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between">
-<img src="assets/logo-canyon.png" alt="Canyon Films" style="height: 48px; width: auto">
-<nav style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-size: 14px">
-<a href="#beneficios" class="navlink" style="color: #C9D7E6; text-decoration: none">Benefícios</a>
-<a href="#pacotes" class="navlink" style="color: #C9D7E6; text-decoration: none">Pacotes</a>
-<a href="#condicoes" class="navlink" style="color: #C9D7E6; text-decoration: none">Condições</a>
-<a class="btn" href="https://wa.me/5542999077025" style="padding: 12px 20px; border-radius: 999px; border: 1px solid #2AD3FF; color: #FFFFFF; text-decoration: none; font-weight: 500">Falar no WhatsApp</a>
-</nav>
+<header class="site-header" id="top">
+  <div class="wrap">
+    <a href="#top" aria-label="Canyon Films, voltar ao início"><img src="assets/logo-canyon.png" alt="Canyon Films"></a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#beneficios" class="navlink">Benefícios</a>
+      <a href="#seu-negocio" class="navlink">No seu negócio</a>
+      <a href="#pacotes" class="navlink">Pacotes</a>
+      <a href="#condicoes" class="navlink">Condições</a>
+      <a class="btn btn-outline btn-sm" href="https://wa.me/5542999077025">Falar no WhatsApp</a>
+    </nav>
+  </div>
 </header>
 
-<section class="hero" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px 32px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
-<div style="flex: 1 1 460px; min-width: 0">
-<p style="margin: 0 0 20px; font-size: 18px; font-weight: 600; letter-spacing: 3px; color: #69B9F0">TOUR VIRTUAL 360° PARA EMPRESAS</p>
-<h1 class="hero-title" style="margin: 0; font-size: 52px; line-height: 1.1; font-weight: 500">Seu espaço visível, para qualquer cliente, de qualquer lugar.</h1>
-<p class="hero-sub" style="margin: 24px 0 0; font-size: 18px; line-height: 1.6; color: #C9D7E6; max-width: 520px">Uma experiência interativa que valoriza o seu negócio e aproxima seus clientes, no seu site, nas redes e no Google Maps.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px">
-<a class="btn" href="#demo" style="padding: 16px 28px; border-radius: 999px; background: linear-gradient(90deg, #0058B3, #00A3D7); color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px">Explorar um tour agora</a>
-<a class="btn" href="#pacotes" style="padding: 16px 28px; border-radius: 999px; border: 1px solid #3A5A7C; color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 15px">Ver pacotes</a>
-</div>
-</div>
-<div class="hero-art" style="flex: 1 1 380px; min-width: 0; display: flex; justify-content: center">
-<img src="assets/logo-360.png" alt="Logo Canyon Films com 360°" style="width: 380px; max-width: 100%; height: auto; border-radius: 50%">
-</div>
+<main>
+
+<section class="wrap hero">
+  <div class="hero-copy reveal">
+    <p class="label">Tour Virtual 360° para empresas</p>
+    <h1 class="hero-title">Seu espaço <em>visível</em>, para qualquer cliente, de qualquer lugar.</h1>
+    <p class="hero-sub">Uma experiência interativa que valoriza o seu negócio e aproxima seus clientes, no seu site, nas redes e no Google Maps.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#demo">Explorar um tour agora</a>
+      <a class="btn btn-ghost" href="#seu-negocio">Como seria no meu negócio?</a>
+    </div>
+    <ul class="trust">
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Publicação no Google Street View</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>12 meses de hospedagem gratuita</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Link e código para o seu site</li>
+    </ul>
+  </div>
+  <div class="hero-art">
+    <img src="assets/logo-360.png" alt="Logo Canyon Films com 360°">
+  </div>
 </section>
 
-<section id="demo" style="max-width: 1200px; margin: 0 auto; padding: 48px 24px">
-<div style="border-radius: 24px; border: 1px solid #1A8FD0; background: #01070D; overflow: hidden">
-<div class="demo-box" style="min-height: 520px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 48px 24px; text-align: center; background: radial-gradient(ellipse at center, #0B3A66 0%, #01070D 70%)">
-<svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#2AD3FF" stroke-width="1.8" aria-hidden="true"><circle cx="36" cy="36" r="30"></circle><ellipse cx="36" cy="36" rx="30" ry="11"></ellipse><ellipse cx="36" cy="36" rx="11" ry="30"></ellipse></svg>
-<p style="margin: 0; font-size: 18px; font-weight: 600; letter-spacing: 3px; color: #69B9F0">VEJA NA PRÁTICA</p>
-<h2 class="demo-title" style="margin: 0; font-size: 34px; font-weight: 500; max-width: 640px; line-height: 1.25">Navegue por um tour real, do mesmo jeito que seus clientes vão navegar no seu.</h2>
-<p style="margin: 0; font-size: 15px; color: #C9D7E6">Arraste para olhar ao redor e clique nas setas para trocar de ambiente.</p>
-<div style="width: 100%; max-width: 1040px; aspect-ratio: 16 / 9; min-height: 320px; border-radius: 16px; overflow: hidden; border: 1px solid #1A8FD0; background: #01070D"><iframe src="https://pano.cool/p/01M5WT9T7NPEGH0YVAAC9GDMMQ" title="Tour virtual 360° de demonstração" loading="lazy" allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking" allowfullscreen style="width: 100%; height: 100%; border: 0; display: block"></iframe></div>
-<a class="btn" href="https://pano.cool/p/01M5WT9T7NPEGH0YVAAC9GDMMQ" style="margin-top: 8px; padding: 16px 32px; border-radius: 999px; background: linear-gradient(90deg, #007DCE, #00D7B1); color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px">Abrir o tour em tela cheia</a>
-</div>
-</div>
+<section id="demo" class="wrap">
+  <div class="demo reveal">
+    <svg width="64" height="64" viewBox="0 0 72 72" fill="none" stroke="#2AD3FF" stroke-width="1.8" aria-hidden="true"><circle cx="36" cy="36" r="30"/><ellipse cx="36" cy="36" rx="30" ry="11"/><ellipse cx="36" cy="36" rx="11" ry="30"/></svg>
+    <p class="label" style="margin:0">Veja na prática</p>
+    <h2>Navegue por um tour real, do mesmo jeito que seus clientes vão navegar no seu.</h2>
+    <p class="hint">Arraste para olhar ao redor e clique nas setas para trocar de ambiente.</p>
+    <div class="tour-frame"><iframe src="https://pano.cool/p/01M5WT9T7NPEGH0YVAAC9GDMMQ" title="Tour virtual 360° de demonstração" loading="lazy" allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking" allowfullscreen></iframe></div>
+    <a class="btn btn-teal" href="https://pano.cool/p/01M5WT9T7NPEGH0YVAAC9GDMMQ" target="_blank" rel="noopener">Abrir o tour em tela cheia</a>
+  </div>
 </section>
 
-<section id="beneficios" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 48px">
-<h2 class="h2" style="margin: 0 0 40px; font-size: 42px; font-weight: 500">Por que ter um tour 360°?</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
-<div class="card" style="padding: 32px; border-radius: 20px; background: #01070D; border: 1px solid #1A8FD0; display: flex; flex-direction: column; gap: 14px">
-<span style="font-size: 40px; font-weight: 600; color: #2AD3FF; line-height: 1">01</span>
-<h3 style="margin: 0; font-size: 20px; font-weight: 600">O cliente conhece antes de visitar</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C9D7E6">Ele percorre cada ambiente pelo celular ou computador e chega até você com mais confiança para comprar.</p>
-</div>
-<div class="card" style="padding: 32px; border-radius: 20px; background: #01070D; border: 1px solid #1A9FC0; display: flex; flex-direction: column; gap: 14px">
-<span style="font-size: 40px; font-weight: 600; color: #2AD3FF; line-height: 1">02</span>
-<h3 style="margin: 0; font-size: 20px; font-weight: 600">Visto por quem procura no Google</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C9D7E6">O Google é onde as pessoas procuram empresas: 7 em cada 10 usam a busca ao escolher um negócio local*. Com o tour, elas já entram no seu espaço por lá.</p>
-</div>
-<div class="card" style="padding: 32px; border-radius: 20px; background: #01070D; border: 1px solid #1AB499; display: flex; flex-direction: column; gap: 14px">
-<span style="font-size: 40px; font-weight: 600; color: #2AD3FF; line-height: 1">03</span>
-<h3 style="margin: 0; font-size: 20px; font-weight: 600">Credibilidade que se vê</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C9D7E6">Mostrar cada ambiente como ele é, provando que seu negócio é real, estruturado e bem cuidado. Confiança conquistada antes do primeiro contato.</p>
-</div>
-</div>
-<p style="margin: 16px 0 0; font-size: 12px; color: #8AA4C0">*BrightLocal, Consumer Search Behavior 2026 (pesquisa realizada nos EUA).</p>
+<section id="beneficios" class="wrap sec">
+  <h2 class="h2 reveal">Por que ter um tour 360°?</h2>
+  <div class="grid3">
+    <div class="card b1 reveal">
+      <span class="num">01</span>
+      <h3>O cliente conhece antes de visitar</h3>
+      <p>Ele percorre cada ambiente pelo celular ou computador e chega até você com mais confiança para comprar.</p>
+    </div>
+    <div class="card b2 reveal">
+      <span class="num">02</span>
+      <h3>Visto por quem procura no Google</h3>
+      <p>O Google é onde as pessoas procuram empresas: 7 em cada 10 usam a busca ao escolher um negócio local*. Com o tour, elas já entram no seu espaço por lá.</p>
+    </div>
+    <div class="card b3 reveal">
+      <span class="num">03</span>
+      <h3>Credibilidade que se vê</h3>
+      <p>Mostrar cada ambiente como ele é, provando que seu negócio é real, estruturado e bem cuidado. Confiança conquistada antes do primeiro contato.</p>
+    </div>
+  </div>
+  <p class="footnote">*BrightLocal, Consumer Search Behavior 2026 (pesquisa realizada nos EUA).</p>
 </section>
 
-<section id="pacotes" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 48px">
-<p style="margin: 0 0 12px; font-size: 18px; font-weight: 600; letter-spacing: 3px; color: #69B9F0">PACOTES</p>
-<h2 class="h2" style="margin: 0 0 40px; font-size: 38px; font-weight: 500">Escolha a opção ideal para o seu negócio.</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: stretch">
+<section id="seu-negocio" class="wrap sec">
+  <p class="label reveal">Faça o teste</p>
+  <h2 class="h2 reveal">Como seria no seu negócio?</h2>
 
-<div class="card" style="padding: 32px; border-radius: 20px; background: #041D38; border: 1px solid #1E6EC2; display: flex; flex-direction: column; gap: 18px">
-<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #2AD3FF">PACOTE 1</p>
-<h3 style="margin: 0; font-size: 28px; font-weight: 600; color: #D1D1D1">Prata</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">Ideal para lojas, clínicas, escritórios e restaurantes. Seu espaço completo em um tour interativo.</p>
-<div style="height: 1px; background: #1E3A5A"></div>
-<div style="display: flex; align-items: center; gap: 12px"><img src="assets/icone-360.png" alt="" style="width: 40px; height: auto; flex-shrink: 0"><p style="margin: 0; font-size: 15px; font-weight: 500">Até 10 ambientes 360°</p></div>
-<div style="display: flex; align-items: center; gap: 12px"><img src="assets/icone-streetview.png" alt="" style="width: 40px; height: 40px; flex-shrink: 0"><p style="margin: 0; font-size: 15px; font-weight: 500">Publicação no Google Street View</p></div>
-<div style="flex-grow: 1"></div>
-<p class="price" style="margin: 0; font-size: 40px; font-weight: 600">R$ 690</p>
-<a class="btn" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Me%20interessei%20pelo%20pacote%20Prata%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." style="padding: 14px 20px; border-radius: 999px; border: 1px solid #2AD3FF; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px; text-align: center">Quero o Prata</a>
-</div>
+  <div class="fit reveal">
 
-<div class="card" style="position: relative; padding: 32px; border-radius: 20px; background: linear-gradient(180deg, #0B3A66 0%, #041D38 100%); border: 2px solid #2AD3FF; display: flex; flex-direction: column; gap: 18px">
-<span style="position: absolute; top: -14px; right: 24px; padding: 6px 14px; border-radius: 999px; background: #00A3D7; font-size: 11px; font-weight: 700; letter-spacing: 1.5px">RECOMENDADO</span>
-<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #2AD3FF">PACOTE 2</p>
-<h3 style="margin: 0; font-size: 28px; font-weight: 600; color: #FFD875">Ouro</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">Para espaços maiores, como academias, hotéis, pousadas e espaços de eventos.</p>
-<div style="height: 1px; background: #1E4A70"></div>
-<div style="display: flex; align-items: center; gap: 12px"><img src="assets/icone-360.png" alt="" style="width: 40px; height: auto; flex-shrink: 0"><p style="margin: 0; font-size: 15px; font-weight: 500">Até 25 ambientes 360°</p></div>
-<div style="display: flex; align-items: center; gap: 12px"><img src="assets/icone-streetview.png" alt="" style="width: 40px; height: 40px; flex-shrink: 0"><p style="margin: 0; font-size: 15px; font-weight: 500">Publicação no Google Street View</p></div>
-<div style="flex-grow: 1"></div>
-<p class="price" style="margin: 0; font-size: 40px; font-weight: 600">R$ 1.390</p>
-<a class="btn" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Me%20interessei%20pelo%20pacote%20Ouro%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." style="padding: 14px 20px; border-radius: 999px; background: linear-gradient(90deg, #0058B3, #00A3D7); color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px; text-align: center">Quero o Ouro</a>
-</div>
+    <div class="step">
+      <div>
+        <div class="step-head"><span class="step-n">1</span><h3>Marque o que acontece hoje com você</h3></div>
+        <p class="help">Toque em quantas frases quiser.</p>
+        <div class="chips" id="pains" role="group" aria-label="Situações do seu negócio">
+          <button type="button" class="chip" aria-pressed="false" data-key="pergunta"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#041D38" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Clientes perguntam como é o espaço antes de vir</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="fotos"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#041D38" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Meu perfil no Google tem poucas fotos, ou fotos antigas</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="bonito"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#041D38" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Meu espaço é mais bonito pessoalmente do que nas fotos</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="longe"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#041D38" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Recebo clientes de outros bairros ou cidades</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="confianca"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#041D38" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Quero passar mais confiança antes do primeiro contato</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="tempo"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#041D38" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Perco tempo explicando por mensagem como é o local</button>
+        </div>
+      </div>
+      <div class="answers" id="answers" aria-live="polite">
+        <p class="ttl">Com o seu tour 360°</p>
+        <p class="empty" id="answers-empty">Marque ao lado o que acontece no seu negócio, e aqui aparece o que muda com o tour.</p>
+        <div id="answers-list" style="display:flex;flex-direction:column;gap:14px"></div>
+      </div>
+    </div>
 
-<div class="card" style="padding: 32px; border-radius: 20px; background: #041D38; border: 1px solid #1AB499; display: flex; flex-direction: column; gap: 18px">
-<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #2AD3FF">PACOTE 3</p>
-<h3 style="margin: 0; font-size: 28px; font-weight: 600; color: #80E5FF">Diamante</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">Para empresas com vários setores ou prédios inteiros. Acima de 50 ambientes, orçamento sob medida.</p>
-<div style="height: 1px; background: #1E3A5A"></div>
-<div style="display: flex; align-items: center; gap: 12px"><img src="assets/icone-360.png" alt="" style="width: 40px; height: auto; flex-shrink: 0"><p style="margin: 0; font-size: 15px; font-weight: 500">Até 50 ambientes 360°</p></div>
-<div style="display: flex; align-items: center; gap: 12px"><img src="assets/icone-streetview.png" alt="" style="width: 40px; height: 40px; flex-shrink: 0"><p style="margin: 0; font-size: 15px; font-weight: 500">Publicação no Google Street View</p></div>
-<div style="flex-grow: 1"></div>
-<p class="price" style="margin: 0; font-size: 40px; font-weight: 600">R$ 2.490</p>
-<a class="btn" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Me%20interessei%20pelo%20pacote%20Diamante%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." style="padding: 14px 20px; border-radius: 999px; border: 1px solid #1AB499; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px; text-align: center">Quero o Diamante</a>
-</div>
+    <div class="step">
+      <div>
+        <div class="step-head"><span class="step-n">2</span><h3>Onde você colocaria o seu tour para trabalhar?</h3></div>
+        <p class="help">Um único link, em todos esses lugares.</p>
+        <div class="chips wrap-row" id="uses" role="group" aria-label="Onde usar o tour">
+          <button type="button" class="chip" aria-pressed="false" data-key="Site"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></span>No meu site</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="WhatsApp"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg></span>No WhatsApp</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="Instagram"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></span>No Instagram</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="Google Maps"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>No Google Maps</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="Orçamentos"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Em orçamentos e e-mails</button>
+          <button type="button" class="chip" aria-pressed="false" data-key="Recepção"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>Numa tela na recepção</button>
+        </div>
+      </div>
+      <div class="meter" aria-live="polite">
+        <span class="big" id="uses-count">0</span>
+        <div class="bar" aria-hidden="true"><i id="uses-bar"></i></div>
+        <p id="uses-text">Toque nos lugares onde você usaria o seu tour.</p>
+      </div>
+    </div>
 
-</div>
+    <div class="step" style="grid-template-columns:1fr">
+      <div>
+        <div class="step-head"><span class="step-n">3</span><h3>Agora imagine</h3></div>
+        <div class="scene" style="margin-top:20px">
+          <div class="clock">22:07<small>HOJE À NOITE</small></div>
+          <p>Alguém procura <b>o seu tipo de negócio</b> no Google. Encontra a sua empresa, toca em "Street View" e <b>entra no seu espaço pelo celular</b>, sem sair de casa. Amanhã de manhã, essa pessoa chega até você <b>já decidida</b>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bridge">
+      <div>
+        <h3>Se fizer sentido para o seu negócio, escolha o pacote ideal.</h3>
+        <p class="free">Sem compromisso: você decide no seu tempo.</p>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#pacotes">Ver os pacotes</a>
+        <a class="btn btn-ghost" id="wa-fit" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Vi%20a%20proposta%20do%20Tour%20360%C2%B0%20e%20quero%20conversar%20sobre%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Conversar sobre o meu caso</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: 48px 24px; display: flex; flex-direction: column; gap: 20px">
-<div style="padding: 32px; border-radius: 20px; background: #01070D; border: 1px solid #1770CD; display: flex; flex-direction: column; gap: 20px">
-<h3 style="margin: 0; font-size: 22px; font-weight: 600">O que você vai receber</h3>
-<div style="display: flex; align-items: center; gap: 16px">
-<div style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; border: 1.5px solid #2AD3FF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2AD3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"></path></svg></div>
-<div style="display: flex; flex-direction: column; gap: 4px">
-<p style="margin: 0; font-size: 15px; font-weight: 600">Link para compartilhamento</p>
-<p style="margin: 0; font-size: 14px; color: #C9D7E6">Compartilhe no WhatsApp, Instagram, Facebook e outros canais.</p>
-</div>
-</div>
-<div style="display: flex; align-items: center; gap: 16px">
-<div style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; border: 1.5px solid #2AD3FF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2AD3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"></path></svg></div>
-<div style="display: flex; flex-direction: column; gap: 4px">
-<p style="margin: 0; font-size: 15px; font-weight: 600">Código HTML</p>
-<p style="margin: 0; font-size: 14px; color: #C9D7E6">Para incorporar o tour ao seu site sem precisar hospedar as imagens 360° nele.</p>
-</div>
-</div>
-<div style="display: flex; align-items: center; gap: 16px">
-<div style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; border: 1.5px solid #2AD3FF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2AD3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></div>
-<div style="display: flex; flex-direction: column; gap: 4px">
-<p style="margin: 0; font-size: 15px; font-weight: 600">Google Street View incluso</p>
-<p style="margin: 0; font-size: 14px; color: #C9D7E6">Tour publicado no Google Maps, no perfil da sua empresa (sujeito à aprovação do Google).</p>
-</div>
-</div>
-</div>
-<div style="padding: 32px; border-radius: 20px; background: #01070D; border: 1px solid #1AB499; display: flex; flex-direction: column; gap: 20px">
-<h3 style="margin: 0; font-size: 22px; font-weight: 600">Complementos promocionais exclusivos</h3>
-<div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid #1E3A5A">
-<span style="font-size: 15px">15 fotos tradicionais</span><span style="font-size: 15px; font-weight: 600; color: #2AD3FF">R$ 350</span>
-</div>
-<div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid #1E3A5A">
-<span style="font-size: 15px">10 fotos aéreas com drone</span><span style="font-size: 15px; font-weight: 600; color: #2AD3FF">R$ 390</span>
-</div>
-<div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap">
-<span style="font-size: 15px">Vídeo de ambientação (aprox. 1min30)</span><span style="font-size: 15px; font-weight: 600; color: #2AD3FF">R$ 490</span>
-</div>
-</div>
+<section id="pacotes" class="wrap sec">
+  <p class="label reveal">Pacotes</p>
+  <h2 class="h2 reveal">Escolha a opção ideal para o seu negócio.</h2>
+  <div class="plans">
+
+    <div class="plan reveal" style="border-color:#1E6EC2">
+      <p class="kicker">PACOTE 1</p>
+      <h3 class="prata">Prata</h3>
+      <p class="desc">Ideal para lojas, clínicas, escritórios e restaurantes. Seu espaço completo em um tour interativo.</p>
+      <div class="sep"></div>
+      <p class="feat"><img src="assets/icone-360.png" alt="">Até 10 ambientes 360°</p>
+      <p class="feat"><img src="assets/icone-streetview.png" alt="" style="height:40px">Publicação no Google Street View</p>
+      <div class="grow"></div>
+      <p class="price"><span>R$</span>690</p>
+      <a class="btn btn-outline" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Me%20interessei%20pelo%20pacote%20Prata%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Quero o Prata</a>
+    </div>
+
+    <div class="plan featured reveal">
+      <span class="tag">RECOMENDADO</span>
+      <p class="kicker">PACOTE 2</p>
+      <h3 class="ouro">Ouro</h3>
+      <p class="desc">Para espaços maiores, como academias, hotéis, pousadas e espaços de eventos.</p>
+      <div class="sep" style="background:#1E4A70"></div>
+      <p class="feat"><img src="assets/icone-360.png" alt="">Até 25 ambientes 360°</p>
+      <p class="feat"><img src="assets/icone-streetview.png" alt="" style="height:40px">Publicação no Google Street View</p>
+      <div class="grow"></div>
+      <p class="price"><span>R$</span>1.390</p>
+      <a class="btn btn-primary" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Me%20interessei%20pelo%20pacote%20Ouro%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Quero o Ouro</a>
+    </div>
+
+    <div class="plan reveal" style="border-color:#1AB499">
+      <p class="kicker">PACOTE 3</p>
+      <h3 class="diamante">Diamante</h3>
+      <p class="desc">Para empresas com vários setores ou prédios inteiros. Acima de 50 ambientes, orçamento sob medida.</p>
+      <div class="sep"></div>
+      <p class="feat"><img src="assets/icone-360.png" alt="">Até 50 ambientes 360°</p>
+      <p class="feat"><img src="assets/icone-streetview.png" alt="" style="height:40px">Publicação no Google Street View</p>
+      <div class="grow"></div>
+      <p class="price"><span>R$</span>2.490</p>
+      <a class="btn btn-outline" style="border-color:#1AB499" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Me%20interessei%20pelo%20pacote%20Diamante%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Quero o Diamante</a>
+    </div>
+
+  </div>
 </section>
 
-<section id="condicoes" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 48px">
-<h2 class="h2" style="margin: 0 0 40px; font-size: 42px; font-weight: 500">Condições de contratação</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
-<div style="padding: 24px; border-radius: 16px; border: 1px solid #1E3A5A; display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font-size: 16px; font-weight: 600">Hospedagem</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">12 meses de hospedagem gratuita. Depois, renovação opcional de R$ 129 por tour, válida por mais 12 meses.</p></div>
-<div style="padding: 24px; border-radius: 16px; border: 1px solid #1E3A5A; display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font-size: 16px; font-weight: 600">Remoção do tour</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">Você pode solicitar a remoção do tour da plataforma a qualquer momento, sem obrigatoriedade de renovação.</p></div>
-<div style="padding: 24px; border-radius: 16px; border: 1px solid #1E3A5A; display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font-size: 16px; font-weight: 600">Prazo e alterações</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">Entrega em até 15 dias após a captação (acima de 50 ambientes, prazo definido no orçamento), com até 2 rodadas de alterações.</p></div>
-<div style="padding: 24px; border-radius: 16px; border: 1px solid #1E3A5A; display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font-size: 16px; font-weight: 600">Pagamento</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">50% na reserva da data e 50% após a entrega. Pix, dinheiro ou cartão (consultar taxas).</p></div>
-<div style="padding: 24px; border-radius: 16px; border: 1px solid #1E3A5A; display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font-size: 16px; font-weight: 600">Limites do tour</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">Cada tour corresponde a um único imóvel ou estabelecimento, sem divisão entre locais diferentes.</p></div>
-<div style="padding: 24px; border-radius: 16px; border: 1px solid #1E3A5A; display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font-size: 16px; font-weight: 600">Captação com drone</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">Depende do clima e de autorização de voo. Se não for possível no dia, remarcamos sem custo; sem data viável, o valor do complemento é devolvido.</p></div>
-<div style="padding: 24px; border-radius: 16px; border: 1px solid #1E3A5A; display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font-size: 16px; font-weight: 600">Direitos e uso do material</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D7E6">Podemos usar trechos do material em nossas redes sociais, salvo solicitação contrária do contratante.</p></div>
-</div>
+<section class="wrap" style="padding-top:40px;display:flex;flex-direction:column;gap:20px">
+  <div class="box-list reveal" style="border:1px solid #1770CD">
+    <h3>O que você vai receber</h3>
+    <div class="inc">
+      <div class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></div>
+      <div><p class="t">Link para compartilhamento</p><p class="d">Compartilhe no WhatsApp, Instagram, Facebook e outros canais.</p></div>
+    </div>
+    <div class="inc">
+      <div class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></div>
+      <div><p class="t">Código HTML</p><p class="d">Para incorporar o tour ao seu site sem precisar hospedar as imagens 360° nele.</p></div>
+    </div>
+    <div class="inc">
+      <div class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+      <div><p class="t">Google Street View incluso</p><p class="d">Tour publicado no Google Maps, no perfil da sua empresa (sujeito à aprovação do Google).</p></div>
+    </div>
+  </div>
+  <div class="box-list reveal" style="border:1px solid #1AB499">
+    <h3>Complementos promocionais exclusivos</h3>
+    <div class="row"><span>15 fotos tradicionais</span><b>R$ 350</b></div>
+    <div class="row"><span>10 fotos aéreas com drone</span><b>R$ 390</b></div>
+    <div class="row"><span>Vídeo de ambientação (aprox. 1min30)</span><b>R$ 490</b></div>
+  </div>
 </section>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 96px">
-<div style="border-radius: 28px; padding: 56px 32px; text-align: center; background: linear-gradient(135deg, #0058B3 0%, #007DCE 50%, #00B39A 100%); display: flex; flex-direction: column; align-items: center; gap: 18px">
-<h2 class="cta-title" style="margin: 0; font-size: 40px; font-weight: 600; max-width: 720px; line-height: 1.2">Pronto para abrir as portas do seu negócio para o mundo?</h2>
-<p style="margin: 0; font-size: 17px; color: #E6F4FF">Fale com a gente e reserve a data da sua captação.</p>
-<a class="btn" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Vi%20a%20proposta%20do%20Tour%20360%C2%B0%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." style="margin-top: 8px; padding: 18px 36px; border-radius: 999px; background: #FFFFFF; color: #041D38; text-decoration: none; font-weight: 700; font-size: 16px">Conversar no WhatsApp</a>
-</div>
+<section id="condicoes" class="wrap sec">
+  <h2 class="h2 reveal">Condições de contratação</h2>
+  <div class="conds">
+    <div class="cond reveal"><p class="t">Hospedagem</p><p class="d">12 meses de hospedagem gratuita. Depois, renovação opcional de R$ 129 por tour, válida por mais 12 meses.</p></div>
+    <div class="cond reveal"><p class="t">Remoção do tour</p><p class="d">Você pode solicitar a remoção do tour da plataforma a qualquer momento, sem obrigatoriedade de renovação.</p></div>
+    <div class="cond reveal"><p class="t">Prazo e alterações</p><p class="d">Entrega em até 15 dias após a captação (acima de 50 ambientes, prazo definido no orçamento), com até 2 rodadas de alterações.</p></div>
+    <div class="cond reveal"><p class="t">Pagamento</p><p class="d">50% na reserva da data e 50% após a entrega. Pix, dinheiro ou cartão (consultar taxas).</p></div>
+    <div class="cond reveal"><p class="t">Limites do tour</p><p class="d">Cada tour corresponde a um único imóvel ou estabelecimento, sem divisão entre locais diferentes.</p></div>
+    <div class="cond reveal"><p class="t">Captação com drone</p><p class="d">Depende do clima e de autorização de voo. Se não for possível no dia, remarcamos sem custo; sem data viável, o valor do complemento é devolvido.</p></div>
+    <div class="cond reveal"><p class="t">Direitos e uso do material</p><p class="d">Podemos usar trechos do material em nossas redes sociais, salvo solicitação contrária do contratante.</p></div>
+  </div>
 </section>
 
-<footer style="border-top: 1px solid #1E3A5A">
-<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 13px; color: #8AA4C0">
-<span>Transformamos histórias em experiências visuais inesquecíveis.</span>
-<span>WhatsApp (42) 9 9907-7025 · contato.canyonfilms@gmail.com</span>
-<span>Cassiane Moraes Novakoski · CNPJ 53.422.724/0001-90 · São Mateus do Sul - PR</span>
-</div>
+<section class="wrap" style="padding-top:56px;padding-bottom:72px">
+  <div class="cta reveal">
+    <h2>Pronto para abrir as portas do seu negócio para o mundo?</h2>
+    <p>Fale com a gente e reserve a data da sua captação.</p>
+    <a class="btn btn-white" href="https://wa.me/5542999077025?text=Ol%C3%A1%21%20Vi%20a%20proposta%20do%20Tour%20360%C2%B0%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Conversar no WhatsApp</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Transformamos histórias em experiências visuais inesquecíveis.</span>
+    <span>WhatsApp (42) 9 9907-7025 · contato.canyonfilms@gmail.com</span>
+    <span>Cassiane Moraes Novakoski · CNPJ 53.422.724/0001-90 · São Mateus do Sul - PR</span>
+  </div>
 </footer>
 
 </div>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+
+  // Header ganha fundo ao rolar
+  var header = document.querySelector('.site-header');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 12); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Aparecer suave ao rolar
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  } else { items.forEach(function(el){ el.classList.add('in'); }); }
+
+  // Passo 1: situações -> o que muda
+  var answers = {
+    pergunta:  ['Você responde com um link.', 'O cliente vê cada ambiente sozinho, a qualquer hora, e chega sabendo onde fica cada coisa.'],
+    fotos:     ['Seu perfil ganha vida.', 'Um passeio completo e atual, publicado direto no Google Maps, no lugar de poucas fotos.'],
+    bonito:    ['Seu espaço aparece como ele é.', 'No 360°, o cliente vê o ambiente inteiro, do jeito que você vê pessoalmente.'],
+    longe:     ['A distância deixa de ser problema.', 'Quem está longe conhece seu espaço sem sair de casa e já chega decidido.'],
+    confianca: ['Confiança antes do primeiro "oi".', 'Mostrar tudo abertamente prova que seu negócio é real, estruturado e bem cuidado.'],
+    tempo:     ['Menos explicação, mais venda.', 'Um link substitui dezenas de mensagens, e seu atendimento foca em fechar.']
+  };
+  var labels = {};
+  var painBtns = document.querySelectorAll('#pains .chip');
+  var list = document.getElementById('answers-list');
+  var empty = document.getElementById('answers-empty');
+  var box = document.getElementById('answers');
+  var check = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+  painBtns.forEach(function(b){ labels[b.dataset.key] = b.textContent.trim(); });
+
+  function renderPains(){
+    list.innerHTML = '';
+    var n = 0;
+    painBtns.forEach(function(b){
+      if (b.getAttribute('aria-pressed') === 'true') {
+        n++;
+        var a = answers[b.dataset.key];
+        var p = document.createElement('p');
+        p.className = 'ans';
+        p.innerHTML = check + '<span><b>' + a[0] + '</b> ' + a[1] + '</span>';
+        list.appendChild(p);
+      }
+    });
+    empty.style.display = n ? 'none' : '';
+    box.classList.toggle('has', n > 0);
+    updateWa();
+  }
+
+  // Passo 2: onde usar
+  var useBtns = document.querySelectorAll('#uses .chip');
+  var countEl = document.getElementById('uses-count');
+  var barEl = document.getElementById('uses-bar');
+  var textEl = document.getElementById('uses-text');
+  function renderUses(){
+    var n = 0;
+    useBtns.forEach(function(b){ if (b.getAttribute('aria-pressed') === 'true') n++; });
+    countEl.textContent = n;
+    barEl.style.width = (n / useBtns.length * 100) + '%';
+    if (n === 0) textEl.textContent = 'Toque nos lugares onde você usaria o seu tour.';
+    else if (n === useBtns.length) textEl.textContent = 'Seu tour vai estar em todos os lugares onde seus clientes procuram você.';
+    else if (n === 1) textEl.textContent = 'Já é 1 lugar onde o seu tour trabalha por você, 24 horas por dia.';
+    else textEl.textContent = 'São ' + n + ' lugares onde o seu tour trabalha por você, 24 horas por dia.';
+    updateWa();
+  }
+
+  function toggle(b, render){ b.addEventListener('click', function(){ b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); render(); }); }
+  painBtns.forEach(function(b){ toggle(b, renderPains); });
+  useBtns.forEach(function(b){ toggle(b, renderUses); });
+
+  // WhatsApp leva as respostas do cliente
+  var wa = document.getElementById('wa-fit');
+  function updateWa(){
+    var pains = [], uses = [];
+    painBtns.forEach(function(b){ if (b.getAttribute('aria-pressed') === 'true') pains.push('- ' + labels[b.dataset.key]); });
+    useBtns.forEach(function(b){ if (b.getAttribute('aria-pressed') === 'true') uses.push(b.dataset.key); });
+    var msg = 'Olá! Vi a proposta do Tour 360° e quero conversar sobre o meu negócio.';
+    if (pains.length) msg += '\n\nHoje no meu negócio:\n' + pains.join('\n');
+    if (uses.length) msg += '\n\nEu usaria o tour: ' + uses.join(', ') + '.';
+    wa.href = 'https://wa.me/5542999077025?text=' + encodeURIComponent(msg);
+  }
+})();
+</script>
 </body>
 </html>
