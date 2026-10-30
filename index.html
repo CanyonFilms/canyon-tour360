@@ -127,11 +127,16 @@ section[id]{scroll-margin-top:88px}
 .meter p{margin:0;font-size:15px;line-height:1.6;color:var(--muted)}
 .bar{height:8px;border-radius:999px;background:#0E2A47;overflow:hidden}
 .bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--grad-teal);transition:width .45s ease}
-.scene{display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:center;border-radius:var(--radius);background:linear-gradient(120deg,#0B3A66,#041D38);border:1px solid rgba(42,211,255,.25);padding:32px}
-.clock{font-size:64px;font-weight:300;line-height:1;letter-spacing:-1px;color:#fff}
-.clock small{display:block;margin-top:8px;font-size:12px;letter-spacing:3px;color:var(--cyan-soft);font-weight:600}
-.scene p{margin:0;font-size:18px;line-height:1.65;color:var(--muted)}
-.scene p b{color:#fff;font-weight:600}
+.how{margin-top:48px;padding-top:48px;border-top:1px solid var(--line)}
+.how .ttl{margin:0 0 24px;font-size:13px;font-weight:600;letter-spacing:2px;color:var(--teal);text-transform:uppercase}
+.how-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;position:relative}
+.how-list::before{content:"";position:absolute;top:28px;left:16%;right:16%;height:1px;background:linear-gradient(90deg,rgba(42,211,255,0),rgba(42,211,255,.45),rgba(26,180,153,.45),rgba(26,180,153,0))}
+.how-item{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:0 8px}
+.how-ico{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--cyan);background:var(--panel);border:1.5px solid var(--cyan);margin-bottom:8px;position:relative}
+.how-item:last-child .how-ico{color:var(--teal);border-color:var(--teal)}
+.how-n{font-size:12px;font-weight:600;letter-spacing:2px;color:var(--cyan-soft);text-transform:uppercase}
+.how-item h4{margin:0;font-size:18px;font-weight:600}
+.how-item p{margin:0;font-size:14px;line-height:1.6;color:var(--muted);max-width:280px}
 .bridge{margin-top:48px;padding-top:40px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
 .bridge h3{margin:0;font-size:26px;font-weight:500;line-height:1.3;max-width:560px}
 .bridge .free{margin:8px 0 0;font-size:14px;color:var(--faint)}
@@ -189,8 +194,12 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ga
 @media (max-width: 860px){
   .step{grid-template-columns:1fr;gap:20px}
   .fit{padding:28px 20px}
-  .scene{grid-template-columns:1fr;gap:16px;padding:26px}
-  .clock{font-size:48px}
+  .how-list{grid-template-columns:1fr;gap:24px}
+  .how-list::before{display:none}
+  .how-item:not(:last-child)::after{content:"";position:absolute;left:27px;top:56px;bottom:-24px;width:1px;background:linear-gradient(180deg,rgba(42,211,255,.45),rgba(26,180,153,.45))}
+  .how-item{display:grid;grid-template-columns:56px 1fr;column-gap:16px;row-gap:4px;text-align:left;align-items:start;padding:0}
+  .how-ico{grid-row:1 / span 3;margin:0}
+  .how-item p{max-width:none}
 }
 @media (max-width: 720px){
   .navlink{display:none}
@@ -211,8 +220,8 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ga
   .demo h2{font-size:22px}
   .tour-frame{aspect-ratio:4/5;min-height:0}
   .step h3{font-size:19px}
+  .how{margin-top:36px;padding-top:36px}
   .step .help{margin-left:0}
-  .scene p{font-size:16px}
   .bridge h3{font-size:21px}
   .bridge .ctas,.bridge .ctas .btn{width:100%}
   .price{font-size:32px}
@@ -344,14 +353,28 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ga
       </div>
     </div>
 
-    <div class="step" style="grid-template-columns:1fr">
-      <div>
-        <div class="step-head"><span class="step-n">3</span><h3>Agora imagine</h3></div>
-        <div class="scene" style="margin-top:20px">
-          <div class="clock">22:07<small>HOJE À NOITE</small></div>
-          <p>Alguém procura <b>o seu tipo de negócio</b> no Google. Encontra a sua empresa, toca em "Street View" e <b>entra no seu espaço pelo celular</b>, sem sair de casa. Amanhã de manhã, essa pessoa chega até você <b>já decidida</b>.</p>
-        </div>
-      </div>
+    <div class="how">
+      <p class="ttl">Como funciona</p>
+      <ol class="how-list">
+        <li class="how-item">
+          <span class="how-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+          <span class="how-n">Etapa 1</span>
+          <h4>Você escolhe a data</h4>
+          <p>A gente vai até o seu espaço para a captação.</p>
+        </li>
+        <li class="how-item">
+          <span class="how-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
+          <span class="how-n">Etapa 2</span>
+          <h4>A gente monta o tour</h4>
+          <p>Entrega em até 15 dias, com até 2 rodadas de ajustes.</p>
+        </li>
+        <li class="how-item">
+          <span class="how-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+          <span class="how-n">Etapa 3</span>
+          <h4>Seu tour vai para o ar</h4>
+          <p>Você recebe o link e o código, e o tour é publicado no Google Street View.</p>
+        </li>
+      </ol>
     </div>
 
     <div class="bridge">
