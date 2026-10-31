@@ -172,12 +172,19 @@ section[id]{scroll-margin-top:88px}
 .row b{color:var(--cyan);font-weight:600}
 
 /* Conditions */
-.conds{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-.cond{padding:24px;border-radius:16px;border:1px solid var(--line);background:rgba(1,7,13,.4);display:flex;flex-direction:column;gap:8px;transition:border-color .2s ease}
-.cond:hover{border-color:#2A5A7C}
-.cond p{margin:0}
-.cond .t{font-size:16px;font-weight:600}
-.cond .d{font-size:14px;line-height:1.6;color:var(--muted)}
+.conds{max-width:880px;border-radius:var(--radius);border:1px solid var(--line);background:rgba(1,7,13,.45);overflow:hidden}
+.cond{border-bottom:1px solid var(--line)}
+.cond:last-child{border-bottom:0}
+.cond summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;cursor:pointer;font-size:16px;font-weight:600;transition:background .2s ease,color .2s ease}
+.cond summary::-webkit-details-marker{display:none}
+.cond summary:hover{background:rgba(42,211,255,.05)}
+.cond summary:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+.cond .arw{width:28px;height:28px;flex-shrink:0;border-radius:50%;border:1px solid #2A4A6C;display:flex;align-items:center;justify-content:center;color:var(--cyan);transition:transform .25s ease,border-color .2s ease,background .2s ease}
+.cond[open]{background:rgba(42,211,255,.04)}
+.cond[open] summary{color:var(--cyan)}
+.cond[open] summary:hover{background:transparent}
+.cond[open] .arw{transform:rotate(180deg);border-color:var(--cyan);background:rgba(42,211,255,.08)}
+.cond .d{margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;color:var(--muted);max-width:720px;animation:pop .3s ease both}
 
 /* Final CTA + footer */
 .cta{border-radius:28px;padding:64px 32px;text-align:center;background:linear-gradient(135deg,#0058B3 0%,#007DCE 50%,#00B39A 100%);display:flex;flex-direction:column;align-items:center;gap:18px;box-shadow:0 30px 80px rgba(0,125,206,.25)}
@@ -228,10 +235,8 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ga
   .cta{padding:44px 20px}
   .cta h2{font-size:26px}
   .card,.plan,.box-list{padding:26px}
-  .conds{gap:10px}
-  .cond{padding:14px 16px;gap:4px;border-radius:12px}
-  .cond .t{font-size:14px}
-  .cond .d{font-size:12.5px;line-height:1.45}
+  .cond summary{padding:16px 18px;font-size:15px}
+  .cond .d{padding:0 18px 16px;font-size:14px;line-height:1.55}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -465,14 +470,14 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ga
 
 <section id="condicoes" class="wrap sec">
   <h2 class="h2 reveal">Condições de contratação</h2>
-  <div class="conds">
-    <div class="cond reveal"><p class="t">Hospedagem</p><p class="d">12 meses de hospedagem gratuita. Depois, renovação opcional de R$ 129 por tour, válida por mais 12 meses.</p></div>
-    <div class="cond reveal"><p class="t">Remoção do tour</p><p class="d">Você pode solicitar a remoção do tour da plataforma a qualquer momento, sem obrigatoriedade de renovação.</p></div>
-    <div class="cond reveal"><p class="t">Prazo e alterações</p><p class="d">Entrega em até 15 dias após a captação (acima de 50 ambientes, prazo definido no orçamento), com até 2 rodadas de alterações.</p></div>
-    <div class="cond reveal"><p class="t">Pagamento</p><p class="d">50% na reserva da data e 50% após a entrega. Pix, dinheiro ou cartão (consultar taxas).</p></div>
-    <div class="cond reveal"><p class="t">Limites do tour</p><p class="d">Cada tour corresponde a um único imóvel ou estabelecimento, sem divisão entre locais diferentes.</p></div>
-    <div class="cond reveal"><p class="t">Captação com drone</p><p class="d">Depende do clima e de autorização de voo. Se não for possível no dia, remarcamos sem custo; sem data viável, o valor do complemento é devolvido.</p></div>
-    <div class="cond reveal"><p class="t">Direitos e uso do material</p><p class="d">Podemos usar trechos do material em nossas redes sociais, salvo solicitação contrária do contratante.</p></div>
+  <div class="conds reveal">
+    <details class="cond"><summary>Hospedagem<span class="arw" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary><p class="d">12 meses de hospedagem gratuita. Depois, renovação opcional de R$ 129 por tour, válida por mais 12 meses.</p></details>
+    <details class="cond"><summary>Remoção do tour<span class="arw" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary><p class="d">Você pode solicitar a remoção do tour da plataforma a qualquer momento, sem obrigatoriedade de renovação.</p></details>
+    <details class="cond"><summary>Prazo e alterações<span class="arw" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary><p class="d">Entrega em até 15 dias após a captação (acima de 50 ambientes, prazo definido no orçamento), com até 2 rodadas de alterações.</p></details>
+    <details class="cond"><summary>Pagamento<span class="arw" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary><p class="d">50% na reserva da data e 50% após a entrega. Pix, dinheiro ou cartão (consultar taxas).</p></details>
+    <details class="cond"><summary>Limites do tour<span class="arw" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary><p class="d">Cada tour corresponde a um único imóvel ou estabelecimento, sem divisão entre locais diferentes.</p></details>
+    <details class="cond"><summary>Captação com drone<span class="arw" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary><p class="d">Depende do clima e de autorização de voo. Se não for possível no dia, remarcamos sem custo; sem data viável, o valor do complemento é devolvido.</p></details>
+    <details class="cond"><summary>Direitos e uso do material<span class="arw" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary><p class="d">Podemos usar trechos do material em nossas redes sociais, salvo solicitação contrária do contratante.</p></details>
   </div>
 </section>
 
