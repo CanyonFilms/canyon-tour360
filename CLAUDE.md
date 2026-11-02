@@ -7,3 +7,4 @@
 - O tour de demonstração está incorporado por `<iframe>` no bloco `#demo` (link do PanoCool).
 - Estilos responsivos e animações ficam no `<style>` do `<head>` (classes `.btn`, `.card`, `.hero-*`, `.h2`).
 - Textos em português do Brasil. Paleta: #07315D, #041D38, #020D17, ciano #2AD3FF, verde-água #1AB499.
+- Tours de clientes: uma pasta por cliente com `index.html` (ex.: `rua-do-mathe/`), servida em `/rua-do-mathe`. Copiar a pasta modelo e trocar o título e o ID do tour do PanoCool no `src` do iframe. Essas páginas levam `noindex`.
